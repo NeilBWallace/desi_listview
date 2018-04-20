@@ -84,13 +84,13 @@
     },
    {
       "id" : 17,
-      "code-alpha-2" : "ChickenNuggets",
-      "code-alpha-3" : "ChickenNuggets"
+      "code-alpha-2" : "Chicken Nuggets",
+      "code-alpha-3" : "Chicken Nuggets"
     },
    {
       "id" : 18,
-      "code-alpha-2" : "CottagePie",
-      "code-alpha-3" : "CottagePie"
+      "code-alpha-2" : "Cottage Pie",
+      "code-alpha-3" : "Cottage Pie"
     },
     {
       "id" : 19,
@@ -114,13 +114,13 @@
     },
   {
       "id" : 23,
-      "code-alpha-2" : "Date",
+      "code-alpha-2" : "Dates",
       "code-alpha-3" : "Dates"
     },
   {
       "id" : 24,
-      "code-alpha-2" : "Fishcake",
-      "code-alpha-3" : "Fishcake"
+      "code-alpha-2" : "Fish cake",
+      "code-alpha-3" : "Fish cake"
     },
   {
       "id" : 25,
