@@ -46,6 +46,6 @@ public class ListItemCountry : ListItemBase
 
 	public void Select(bool selected)
 	{
-		_label.color = selected ? Color.green : Color.black;
+		_label.color = selected ? Color.green : Color.white;
 	}
 }

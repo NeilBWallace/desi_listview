@@ -131,6 +131,9 @@ public class Countries
 	private static Dictionary<string, Country> GetDictionary()
 	{
 		Dictionary<string, Country> result = new Dictionary<string, Country> ();
+		Dictionary<string, Country> description = new Dictionary<string, Country> ();
+
+
 
 		Dictionary<int, CountryName> names = LoadCountryNames ();
 
@@ -139,7 +142,7 @@ public class Countries
 		for (int i = 0; i < json.list.Count; i++)
 		{
 			Country country = new Country (json.list [i]);
-			country.Name = names [country.Id].Names ["EN"];
+			country.Name = names [country.Id].Names ["EN"] ;  
 
 			result.Add (country.CodeAlpha2, country);
 		}
@@ -148,6 +151,9 @@ public class Countries
 
 		return result;
 	}
+
+
+
 
 	private static Dictionary<int, CountryName> LoadCountryNames()
 	{
