@@ -34,5 +34,9 @@ public class ListItemMovie : ListItemBase
 		_aspectRatioFitter.aspectRatio = (float)sprite.texture.width / (float)sprite.texture.height;
 
 		_image.sprite = sprite;
+
+	Color tempColor = _image.color;
+		tempColor.a= 1f;
+		_image.color = tempColor;
 	}
 }

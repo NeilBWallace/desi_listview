@@ -14,6 +14,47 @@ using System.Linq;
 
 public class ListController : MonoBehaviour
 {
+	
+	[SerializeField]
+	private Image Food1;
+
+	[SerializeField]
+	private Image Food2;
+
+	[SerializeField]
+	private Image Food3;
+
+	[SerializeField]
+	private Image strength_red;
+
+	[SerializeField]
+	private Image health_red;
+
+	[SerializeField]
+	private Image smartness_red;
+
+
+	[SerializeField]
+	private Text health;
+	[SerializeField]
+	private Text strength;
+	[SerializeField]
+	private Text smartness;
+
+
+	[SerializeField]
+	private Image foodbank1;
+
+	[SerializeField]
+	private Text food_group;
+
+
+	[SerializeField]
+	private Text food_title1;
+
+	[SerializeField]
+	private Text food_description;
+
 	[SerializeField]
 	private Image food;
 
@@ -41,8 +82,9 @@ public class ListController : MonoBehaviour
 
 	void Start()
 	{
-		
-
+		strength_red.fillAmount = StrengthScript.strength_red;
+		health_red.fillAmount = StrengthScript.health_red;
+		smartness_red.fillAmount = StrengthScript.smartness_red;
 		_countries = Countries.Dictionary.ToList ();
 
 		_list.onItemLoaded = HandleOnItemLoadedHandler;		// called when an item is recycled
@@ -68,9 +110,29 @@ public class ListController : MonoBehaviour
 
 		_selectedIndex = _selectedItem.Index;
 	
-		food.sprite = Resources.Load<Sprite> ("flags/" +_countries [item.Index].Value.Name.ToLower ());
+		StrengthScript.strength_red -= float.Parse(_countries[item.Index].Value.Strength)/10;
+		strength_red.fillAmount = StrengthScript.strength_red;
 
+		StrengthScript.health_red -= float.Parse(_countries[item.Index].Value.Health)/10;
+		health_red.fillAmount = StrengthScript.health_red;
+
+		StrengthScript.smartness_red -= float.Parse(_countries[item.Index].Value.Smartness)/10;
+		smartness_red.fillAmount = StrengthScript.smartness_red;
+
+
+		food_title1.GetComponent<Text>().text =_countries [item.Index].Value.Name.ToLower ();
+		foodbank1.sprite = Resources.Load<Sprite> ("flags/" +_countries [item.Index].Value.Name.ToLower ());
+		food.sprite = Resources.Load<Sprite> ("flags/" +_countries [item.Index].Value.Name.ToLower ());
+		food_description.GetComponent<Text>().text =_countries [item.Index].Value.Name.ToLower ();
 		fd.GetComponent<Text>().text =_countries[item.Index].Value.CodeAlpha3;
+	    food_group.GetComponent<Text>().text =_countries[item.Index].Value.FoodGroups;
+		health.GetComponent<Text>().text =_countries[item.Index].Value.Health;
+		strength.GetComponent<Text>().text =_countries[item.Index].Value.Strength;
+
+	//	strength.GetComponent<Text>().text =_countries[item.Index].Value.Strength;
+
+
+		smartness.GetComponent<Text>().text =_countries[item.Index].Value.Smartness;
 
 		AudioSource audio = gameObject.AddComponent<AudioSource>();
 		allAudioSources = FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
