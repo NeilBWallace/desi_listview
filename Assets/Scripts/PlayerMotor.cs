@@ -8,7 +8,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class PlayerMotor : MonoBehaviour {
 
-//Transform target;		// Target to follow
+Transform target;		// Target to follow
 	NavMeshAgent agent;		// Reference to our agent
 //public Animation an;
 	// Get references
@@ -20,11 +20,11 @@ public class PlayerMotor : MonoBehaviour {
 	void Update ()
 	{
 		// If we have a target
-//	if (target != null)
-//{
-//		agent.SetDestination(target.position);
-//			FaceTarget();
-//		}
+	if (target != null)
+{
+		agent.SetDestination(target.position);
+			FaceTarget();
+		}
 	}
 
 	public void MoveToPoint (Vector3 point)
@@ -39,7 +39,7 @@ public class PlayerMotor : MonoBehaviour {
 		agent.stoppingDistance = newTarget.radius * .8f;
 		agent.updateRotation = false;
 	//
-//		target = newTarget.interactionTransform;
+	target = newTarget.interactionTransform;
 	}
 
 	// Stop following a target
@@ -53,7 +53,7 @@ public class PlayerMotor : MonoBehaviour {
 	// Make sure to look at the target
 	void FaceTarget ()
 	{
-	//	Vector3 direction = (target.position - transform.position).normalized;
+		Vector3 direction = (target.position - transform.position).normalized;
 
 		if (Vector3.Distance(transform.position, agent.destination) <= 1f)
 		{
@@ -63,8 +63,8 @@ public class PlayerMotor : MonoBehaviour {
 		}
 	
 
-	//	Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0f, direction.z));
-	//	transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+		Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0f, direction.z));
+		transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
 	
 
 	

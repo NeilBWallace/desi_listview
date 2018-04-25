@@ -14,7 +14,24 @@ using System.Linq;
 
 public class ListController : MonoBehaviour
 {
-	
+	public static int chosen=0;
+
+
+	[SerializeField]
+	public GameObject rb;
+
+	public Material[] material;
+	Renderer rend;
+
+	[SerializeField]
+	private GameObject fo1;
+
+	[SerializeField]
+	private GameObject fo2;
+
+	[SerializeField]
+	private GameObject fo3;
+
 	[SerializeField]
 	private Image Food1;
 
@@ -142,7 +159,33 @@ public class ListController : MonoBehaviour
 			}
 		audio.PlayOneShot((AudioClip)Resources.Load("audio/" + _countries [item.Index].Value.Name));
 
-		#if UNITY_EDITOR || DEVELOPMENT_BUILD
+		if (chosen == 0) {
+			fo1 = GameObject.FindGameObjectWithTag ("FO1");
+			ItemPickup i = fo1.GetComponent<ItemPickup> ();
+			i.name = _countries [item.Index].Value.Name;
+			rend = fo1.GetComponent<Renderer> ();
+			rend.material.color = Color.green;
+			chosen++;
+		}else if(chosen == 1){
+				fo2 = GameObject.FindGameObjectWithTag ("FO2");
+				ItemPickup i = fo2.GetComponent<ItemPickup> ();
+				i.name = _countries [item.Index].Value.Name;
+				rend = fo2.GetComponent<Renderer> ();
+				rend.material.color = Color.green;
+			chosen++;
+		
+	}else if(chosen == 2){
+		fo3 = GameObject.FindGameObjectWithTag ("FO3");
+		ItemPickup i = fo3.GetComponent<ItemPickup> ();
+		i.name = _countries [item.Index].Value.Name;
+		rend = fo3.GetComponent<Renderer> ();
+		rend.material.color = Color.green;
+			chosen++;
+
+			rb.gameObject.SetActive(true);
+	}
+
+			#if UNITY_EDITOR || DEVELOPMENT_BUILD
 		Debug.Log("Selected Country | " + _countries[item.Index].Value.Name  + "sfsf" + _countries[item.Index].Value.CodeAlpha3)    ;
 		#endif
 	}

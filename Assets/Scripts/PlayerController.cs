@@ -11,8 +11,42 @@ public class PlayerController : MonoBehaviour
 	Camera cam;
 	public LayerMask movementMask;
 	public Animation anim;
-
+	public Interactable focus;
 	PlayerMotor motor;
+
+
+
+
+
+	// Set our focus to a new focus
+	void SetFocus (Interactable newFocus)
+	{
+		// If our focus has changed
+		if (newFocus != focus)
+		{
+			// Defocus the old one
+			if (focus != null)
+				focus.OnDefocused();
+
+			focus = newFocus;	// Set our new focus
+			motor.FollowTarget(newFocus);	// Follow the new focus
+		}
+
+		newFocus.OnFocused(transform);
+	}
+
+	// Remove our current focus
+	void RemoveFocus ()
+	{
+		if (focus != null)
+			focus.OnDefocused();
+
+		focus = null;
+		motor.StopFollowingTarget();
+
+	}
+
+
 
 
 	void Start(){
@@ -20,7 +54,7 @@ public class PlayerController : MonoBehaviour
 		cam =Camera.main;
 		motor = GetComponent<PlayerMotor> ();
 	}
-	void Update()
+	void Update ()
 	{
 
 
@@ -29,29 +63,38 @@ public class PlayerController : MonoBehaviour
 			RaycastHit hit;
 
 			if (Physics.Raycast (ray, out hit)) {
-				Debug.Log ("we hit" + hit.collider.name + " " + hit.point);	}
-		motor.MoveToPoint (hit.point);
+				if (button.move == 1) {
+					motor.MoveToPoint (hit.point);
+				}
+				//	Debug.Log ("we hit" + hit.collider.name + " " + hit.point);
+			
 		
-		//	var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
-		//	var z = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
-		//	var walkSpeed = Input.GetAxis ("Vertical");
-		//	Debug.Log ("rotation" + x);
-		//	Debug.Log (walkSpeed);
+		
 
-	//		if ((Mathf.Abs(x) > 0.05) || (Mathf.Abs(walkSpeed) > 0.05)) {
+				Interactable interactable = hit.collider.GetComponent<Interactable> ();
+
+				if (interactable != null) {
+					SetFocus (interactable);
+					//	}
+					//	var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
+					//	var z = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
+					//	var walkSpeed = Input.GetAxis ("Vertical");
+					//	Debug.Log ("rotation" + x);
+					//	Debug.Log (walkSpeed);
 
 				
-	//		}
-	//		else {
-	//			anim.Stop("stand");
-	//		}
+				
+				}	
 
+			}
+	
+
+			//	transform.Rotate(0, x, 0);
+			//	transform.Translate(0, 0, z);
+
+	
 		}
-	
-
-	//	transform.Rotate(0, x, 0);
-	//	transform.Translate(0, 0, z);
-
-	
 	}
 }
+
+
