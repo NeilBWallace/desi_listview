@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StrengthScript : MonoBehaviour {
+	public static int chosen_food = 0;
 
-
+	public static string current_food;
 	public static float strength_red=0.9f;
 	public static float health_red=0.8f;
 	public static float smartness_red=0.6f;

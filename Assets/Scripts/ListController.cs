@@ -118,12 +118,12 @@ public class ListController : MonoBehaviour
 
 		StrengthScript.smartness_red -= float.Parse(_countries[item.Index].Value.Smartness)/10;
 		smartness_red.fillAmount = StrengthScript.smartness_red;
+		StrengthScript.current_food = _countries [item.Index].Value.Name.ToLower ();
 
-
-		food_title1.GetComponent<Text>().text =_countries [item.Index].Value.Name.ToLower ();
-		foodbank1.sprite = Resources.Load<Sprite> ("flags/" +_countries [item.Index].Value.Name.ToLower ());
-		food.sprite = Resources.Load<Sprite> ("flags/" +_countries [item.Index].Value.Name.ToLower ());
-		food_description.GetComponent<Text>().text =_countries [item.Index].Value.Name.ToLower ();
+		food_title1.GetComponent<Text> ().text = StrengthScript.current_food;
+			foodbank1.sprite = Resources.Load<Sprite> ("flags/" +StrengthScript.current_food);
+		food.sprite = Resources.Load<Sprite> ("flags/" +StrengthScript.current_food);
+		food_description.GetComponent<Text>().text =StrengthScript.current_food;
 		fd.GetComponent<Text>().text =_countries[item.Index].Value.CodeAlpha3;
 	    food_group.GetComponent<Text>().text =_countries[item.Index].Value.FoodGroups;
 		health.GetComponent<Text>().text =_countries[item.Index].Value.Health;
