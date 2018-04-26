@@ -19,7 +19,8 @@ public class ListController : MonoBehaviour
 	[SerializeField]
 	private  GameObject opening_text;
 
-
+	[SerializeField]
+	public GameObject choose_food_panel;
 	[SerializeField]
 	public GameObject food_panel;
 
@@ -134,15 +135,15 @@ public class ListController : MonoBehaviour
 		_selectedIndex = _selectedItem.Index;
 	
 		StrengthScript.strength_red -= float.Parse(_countries[item.Index].Value.Strength)/10; 
-				strength_red.fillAmount = StrengthScript.strength_red; 
+			//	strength_red.fillAmount = StrengthScript.strength_red; 
 
 
 				StrengthScript.health_red -= float.Parse(_countries[item.Index].Value.Health)/10; 
-				health_red.fillAmount = StrengthScript.health_red; 
+	//			health_red.fillAmount = StrengthScript.health_red; 
 	 
 
-				StrengthScript.smartness_red -= float.Parse(_countries[item.Index].Value.Smartness)/10; 
-			smartness_red.fillAmount = StrengthScript.smartness_red; 
+			StrengthScript.smartness_red -= float.Parse(_countries[item.Index].Value.Smartness)/10; 
+	//		smartness_red.fillAmount = StrengthScript.smartness_red; 
 				StrengthScript.current_food = _countries [item.Index].Value.Name.ToLower (); 
 
 
@@ -153,11 +154,15 @@ public class ListController : MonoBehaviour
 		temp.a = 1f;
 		foodbank1.color = temp;
 
-
+		choose_food_panel.SetActive (true);
 		food_panel.SetActive (true);		
 		opening_text.SetActive (false);
 
 		Opening_Values.selectedfood= _countries [item.Index].Value.Name;
+		Opening_Values.selectedfoodstrength= int.Parse(_countries [item.Index].Value.Strength);
+		Opening_Values.selectedfoodhealth= int.Parse(_countries [item.Index].Value.Health);
+		Opening_Values.selectedfoodsmartness= int.Parse(_countries [item.Index].Value.Smartness);
+		Opening_Values.selectedfoodfd= _countries [item.Index].Value.CodeAlpha3;
 
 			foodbank1.sprite = Resources.Load<Sprite> ("flags/" +StrengthScript.current_food);
 			fd.GetComponent<Text>().text =_countries[item.Index].Value.CodeAlpha3;
