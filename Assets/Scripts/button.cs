@@ -4,10 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class button : MonoBehaviour {
+
+	[SerializeField]
+	public GameObject foodbank_panel;
+
+	[SerializeField]
+	public GameObject food_panel;
+
 	[SerializeField]
 	public GameObject rb;
 
-	public static int move =0;
+	[SerializeField]
+	public GameObject desi;
 
 	public Button yourbutton;
 	// Use this for initialization
@@ -19,10 +27,11 @@ public class button : MonoBehaviour {
 	void TaskOnClick()
 	{
 		Debug.Log ("you clicked");
-		move = 1;
-
-	//	GameObject desi = GameObject.FindGameObjectWithTag ("desi");
-	//	desi.SetActive (false);
+		Opening_Values.move = 1;
+		foodbank_panel.SetActive (false);
+		food_panel.SetActive (false);
+		desi.SetActive (true);
+		rb.SetActive (false);
 	}
 	// Update is called once per frame
 	void Update () {

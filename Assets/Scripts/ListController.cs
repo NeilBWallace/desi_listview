@@ -14,8 +14,14 @@ using System.Linq;
 
 public class ListController : MonoBehaviour
 {
-	public static int chosen=0;
+	
 
+	[SerializeField]
+	private  GameObject opening_text;
+
+
+	[SerializeField]
+	public GameObject food_panel;
 
 	[SerializeField]
 	public GameObject rb;
@@ -80,10 +86,10 @@ public class ListController : MonoBehaviour
 
 
 	[SerializeField]
-	private List _list;
+	public List _list;
 
 	[SerializeField]
-	private ListItemBase _listItem;
+	public ListItemBase _listItem;
 
 
 	private AudioSource[] allAudioSources;
@@ -92,9 +98,9 @@ public class ListController : MonoBehaviour
 
 	private int _selectedIndex;
 
-	private ListItemCountry _selectedItem;
+	public ListItemCountry _selectedItem;
 
-	private List<KeyValuePair<string, Country>> _countries;
+	public List<KeyValuePair<string, Country>> _countries;
 
 
 	void Start()
@@ -127,22 +133,38 @@ public class ListController : MonoBehaviour
 
 		_selectedIndex = _selectedItem.Index;
 	
-		StrengthScript.strength_red -= float.Parse(_countries[item.Index].Value.Strength)/10;
-		strength_red.fillAmount = StrengthScript.strength_red;
+		StrengthScript.strength_red -= float.Parse(_countries[item.Index].Value.Strength)/10; 
+				strength_red.fillAmount = StrengthScript.strength_red; 
 
-		StrengthScript.health_red -= float.Parse(_countries[item.Index].Value.Health)/10;
-		health_red.fillAmount = StrengthScript.health_red;
 
-		StrengthScript.smartness_red -= float.Parse(_countries[item.Index].Value.Smartness)/10;
-		smartness_red.fillAmount = StrengthScript.smartness_red;
-		StrengthScript.current_food = _countries [item.Index].Value.Name.ToLower ();
+				StrengthScript.health_red -= float.Parse(_countries[item.Index].Value.Health)/10; 
+				health_red.fillAmount = StrengthScript.health_red; 
+	 
+
+				StrengthScript.smartness_red -= float.Parse(_countries[item.Index].Value.Smartness)/10; 
+			smartness_red.fillAmount = StrengthScript.smartness_red; 
+				StrengthScript.current_food = _countries [item.Index].Value.Name.ToLower (); 
+
+
+
 
 		food_title1.GetComponent<Text> ().text = StrengthScript.current_food;
+		Color temp = foodbank1.color;
+		temp.a = 1f;
+		foodbank1.color = temp;
+
+
+		food_panel.SetActive (true);		
+		opening_text.SetActive (false);
+
+		Opening_Values.selectedfood= _countries [item.Index].Value.Name;
+
 			foodbank1.sprite = Resources.Load<Sprite> ("flags/" +StrengthScript.current_food);
-		food.sprite = Resources.Load<Sprite> ("flags/" +StrengthScript.current_food);
-		food_description.GetComponent<Text>().text =StrengthScript.current_food;
-		fd.GetComponent<Text>().text =_countries[item.Index].Value.CodeAlpha3;
-	    food_group.GetComponent<Text>().text =_countries[item.Index].Value.FoodGroups;
+			fd.GetComponent<Text>().text =_countries[item.Index].Value.CodeAlpha3;
+
+
+		food_group.GetComponent<Text>().text ="(" + _countries[item.Index].Value.FoodGroups + ")";
+
 		health.GetComponent<Text>().text =_countries[item.Index].Value.Health;
 		strength.GetComponent<Text>().text =_countries[item.Index].Value.Strength;
 
@@ -159,31 +181,7 @@ public class ListController : MonoBehaviour
 			}
 		audio.PlayOneShot((AudioClip)Resources.Load("audio/" + _countries [item.Index].Value.Name));
 
-		if (chosen == 0) {
-			fo1 = GameObject.FindGameObjectWithTag ("FO1");
-			ItemPickup i = fo1.GetComponent<ItemPickup> ();
-			i.name = _countries [item.Index].Value.Name;
-			rend = fo1.GetComponent<Renderer> ();
-			rend.material.color = Color.green;
-			chosen++;
-		}else if(chosen == 1){
-				fo2 = GameObject.FindGameObjectWithTag ("FO2");
-				ItemPickup i = fo2.GetComponent<ItemPickup> ();
-				i.name = _countries [item.Index].Value.Name;
-				rend = fo2.GetComponent<Renderer> ();
-				rend.material.color = Color.green;
-			chosen++;
-		
-	}else if(chosen == 2){
-		fo3 = GameObject.FindGameObjectWithTag ("FO3");
-		ItemPickup i = fo3.GetComponent<ItemPickup> ();
-		i.name = _countries [item.Index].Value.Name;
-		rend = fo3.GetComponent<Renderer> ();
-		rend.material.color = Color.green;
-			chosen++;
-
-			rb.gameObject.SetActive(true);
-	}
+	
 
 			#if UNITY_EDITOR || DEVELOPMENT_BUILD
 		Debug.Log("Selected Country | " + _countries[item.Index].Value.Name  + "sfsf" + _countries[item.Index].Value.CodeAlpha3)    ;

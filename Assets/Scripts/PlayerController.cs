@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
 			RaycastHit hit;
 
 			if (Physics.Raycast (ray, out hit)) {
-				if (button.move == 1) {
+				if (Opening_Values.move == 1) {
 					motor.MoveToPoint (hit.point);
 				}
 				//	Debug.Log ("we hit" + hit.collider.name + " " + hit.point);
