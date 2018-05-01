@@ -21,8 +21,7 @@ public class ListController : MonoBehaviour
 
 	[SerializeField]
 	public GameObject choose_food_panel;
-	[SerializeField]
-	public GameObject food_panel;
+
 
 	[SerializeField]
 	public GameObject rb;
@@ -30,23 +29,7 @@ public class ListController : MonoBehaviour
 	public Material[] material;
 	Renderer rend;
 
-	[SerializeField]
-	private GameObject fo1;
 
-	[SerializeField]
-	private GameObject fo2;
-
-	[SerializeField]
-	private GameObject fo3;
-
-	[SerializeField]
-	private Image Food1;
-
-	[SerializeField]
-	private Image Food2;
-
-	[SerializeField]
-	private Image Food3;
 
 	[SerializeField]
 	private Image strength_red;
@@ -150,24 +133,44 @@ public class ListController : MonoBehaviour
 
 
 		food_title1.GetComponent<Text> ().text = StrengthScript.current_food;
-		Color temp = foodbank1.color;
-		temp.a = 1f;
-		foodbank1.color = temp;
+	//	Color temp = foodbank1.color;
+	//	temp.a = 1f;
+	//	foodbank1.color = temp;
 
-		choose_food_panel.SetActive (true);
-		food_panel.SetActive (true);		
+
+
+	
+
+		CanvasGroup c =GameObject.Find("Food_Panel").GetComponent<CanvasGroup> ();
+		c.alpha = 1;
+
+		c =GameObject.Find("Choose_Food_Panel").GetComponent<CanvasGroup> ();
+		c.alpha = 1;
+
+
+
 		opening_text.SetActive (false);
 
 		Opening_Values.selectedfood= _countries [item.Index].Value.Name;
+
+		Debug.Log ("selectedfood" + Opening_Values.selectedfood);
+
 		Opening_Values.selectedfoodstrength= int.Parse(_countries [item.Index].Value.Strength);
 		Opening_Values.selectedfoodhealth= int.Parse(_countries [item.Index].Value.Health);
 		Opening_Values.selectedfoodsmartness= int.Parse(_countries [item.Index].Value.Smartness);
 		Opening_Values.selectedfoodfd= _countries [item.Index].Value.CodeAlpha3;
 
-			foodbank1.sprite = Resources.Load<Sprite> ("flags/" +StrengthScript.current_food);
+
+
+		if (StrengthScript.current_food != "") {
+			foodbank1.sprite = Resources.Load<Sprite> ("flags/" + StrengthScript.current_food);
+		}
+
+
+
 			fd.GetComponent<Text>().text =_countries[item.Index].Value.CodeAlpha3;
 
-
+		Opening_Values.selectedfoodfoodgroup = _countries [item.Index].Value.FoodGroups;
 		food_group.GetComponent<Text>().text ="(" + _countries[item.Index].Value.FoodGroups + ")";
 
 		health.GetComponent<Text>().text =_countries[item.Index].Value.Health;
@@ -184,7 +187,7 @@ public class ListController : MonoBehaviour
 			foreach(AudioSource audioS in allAudioSources){
 				audioS.Stop();
 			}
-		audio.PlayOneShot((AudioClip)Resources.Load("audio/" + _countries [item.Index].Value.Name));
+	//	audio.PlayOneShot((AudioClip)Resources.Load("audio/" + _countries [item.Index].Value.Name));
 
 	
 

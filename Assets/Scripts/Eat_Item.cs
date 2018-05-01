@@ -41,25 +41,28 @@ btn.onClick.AddListener (TaskOnClick);
 		Debug.Log ("eat food");
 		Opening_Values.move = 1;
 
-		Debug.Log ("strength" + strength.text);
+		Debug.Log ("smartness" + float.Parse(smartness.text)/10);
 
 
+		Debug.Log ("smartness red" + StrengthScript.smartness_red);
 
 
-		StrengthScript.strength_red -=float.Parse(strength.text)/10; 
+	StrengthScript.strength_red -=float.Parse(strength.text)/10; 
 	strength_red.fillAmount = StrengthScript.strength_red; 
 
+		StrengthScript.health_red -=float.Parse(health.text)/10; 
+	health_red.fillAmount = StrengthScript.health_red; 
 
-		StrengthScript.health_red -= float.Parse(health.text)/10; 
-			health_red.fillAmount = StrengthScript.health_red; 
 
-
-		StrengthScript.smartness_red -= float.Parse(smartness.text)/10; 
+	
+	StrengthScript.smartness_red -= float.Parse(smartness.text)/10; 
 			smartness_red.fillAmount = StrengthScript.smartness_red; 
 
-
-		//food_panel.SetActive (false);
-	//	eat_food_panel.SetActive (false);
+		CanvasGroup c =GameObject.Find("Food_Panel").GetComponent<CanvasGroup> ();
+		c.alpha = 0;
+		c =GameObject.Find("Eat_Food_Panel").GetComponent<CanvasGroup> ();
+		c.alpha = 0;
+	
 
 	}
 

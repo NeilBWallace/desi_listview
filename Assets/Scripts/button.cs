@@ -28,10 +28,16 @@ public class button : MonoBehaviour {
 	{
 		Debug.Log ("you clicked");
 		Opening_Values.move = 1;
-		foodbank_panel.SetActive (false);
-		food_panel.SetActive (false);
+
+		CanvasGroup c =GameObject.Find("Food_Panel").GetComponent<CanvasGroup> ();
+		c.alpha = 0;
+		c =GameObject.Find("foodbank_panel").GetComponent<CanvasGroup> ();
+		c.alpha = 0;
+		c =GameObject.Find("rb").GetComponent<CanvasGroup> ();
+		c.alpha = 0;
+
 		desi.SetActive (true);
-		rb.SetActive (false);
+
 	}
 	// Update is called once per frame
 	void Update () {

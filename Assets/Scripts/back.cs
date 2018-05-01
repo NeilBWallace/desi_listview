@@ -22,8 +22,12 @@ public class back : MonoBehaviour {
 	{
 		Debug.Log ("you clicked");
 		Opening_Values.move = 1;
-			food_panel.SetActive (false);
-		eat_food_panel.SetActive (false);
+
+		CanvasGroup c =GameObject.Find("Food_Panel").GetComponent<CanvasGroup> ();
+		c.alpha = 0;
+		c =GameObject.Find("Eat_Food_Panel").GetComponent<CanvasGroup> ();
+		c.alpha = 0;
+
 	
 	}
 	
