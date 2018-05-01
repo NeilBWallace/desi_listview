@@ -187,7 +187,7 @@ public class ListController : MonoBehaviour
 			foreach(AudioSource audioS in allAudioSources){
 				audioS.Stop();
 			}
-	//	audio.PlayOneShot((AudioClip)Resources.Load("audio/" + _countries [item.Index].Value.Name));
+	audio.PlayOneShot((AudioClip)Resources.Load("audio/" + _countries [item.Index].Value.Name));
 
 	
 
