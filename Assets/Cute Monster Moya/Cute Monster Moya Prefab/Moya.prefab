@@ -578,6 +578,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000010671415648}
   - component: {fileID: 137000011309070730}
+  - component: {fileID: 111189156460629416}
   m_Layer: 0
   m_Name: body
   m_TagString: Untagged
@@ -1295,6 +1296,24 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 1
+--- !u!111 &111189156460629416
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013941281282}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 086511ce16a787b43a2001f3ac9f4b1b, type: 3}
+  m_Animations:
+  - {fileID: 7400000, guid: 086511ce16a787b43a2001f3ac9f4b1b, type: 3}
+  - {fileID: 7400000, guid: e3fb9d363c9bc994ebc2aa46aeb0cf4c, type: 3}
+  - {fileID: 7400000, guid: b4834b88dd3550d4c898a2a399e8b51e, type: 3}
+  - {fileID: 7400000, guid: 96888e0c1cc4e214abd91d804004936e, type: 3}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!137 &137000011309070730
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

@@ -22,7 +22,7 @@ public class choose_the_food : MonoBehaviour {
 	public Material[] material;
 	Renderer rend;
 	public static int chosen=0;
-	public static int pos=20;
+	public static int pos=1;
 
 	public Button yourbutton;
 	// Use this for initialization
